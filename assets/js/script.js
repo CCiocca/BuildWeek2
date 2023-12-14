@@ -32,14 +32,16 @@ function createArrayAlbums(data){
 
 
 function createArraySongs(data){
-    let song = data;
-    arraySongs.push(song);
+    for (let i = 0; i < data.data.length; i++){
+        let song = data.data[i];
+        arraySongs.push(song);
+    }
 };
 
 
 getData("alt-j");
-// getData("queen");
-// getData("dua-lipa");
+getData("queen");
+getData("dua-lipa");
 
 
 // console.log(arrayArtists, "array artists");
@@ -108,7 +110,7 @@ function printSongs(){
     console.log(arraySongs, "array songs");
     const containerAltroPiace = document.getElementById("containerAltroPiace"); 
     containerAltroPiace.innerHTML = "";
-    for (let i = 0; i < arraySongs.length; i++){
+    for (let i = 0; i < 10; i++){
         // console.log(containerAltroPiace, "container before")
         const newCard = document.createElement("div");
         newCard.classList.add("col");
@@ -116,7 +118,7 @@ function printSongs(){
         newCard.innerHTML = `
                 <div class="card p-3 border-0 bg-dark-grey">
                   <img
-                    src="${arraySongs[i].cover_small}"
+                    src="${arraySongs[i].album.cover}"
                   />
                   <div class="card-body pt-3 p-0">
                     <h6 class="card-title text-white">Card title</h6>
