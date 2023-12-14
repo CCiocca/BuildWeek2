@@ -13,13 +13,18 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
     />
-    <link rel="stylesheet" href="../BuildWeek2/assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body data-bs-theme="dark">
+  <body
+    style="max-height: 100vh; overflow: hidden"
+    class="bg-black"
+    data-bs-theme="dark"
+  >
     <main>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-3">
+          <!-- SIDEBAR  SINISTRA -->
+          <div class="col-2">
             <nav class="nav flex-column">
               <div>
                 <button
@@ -166,8 +171,9 @@
               <hr />
 
               <div
-                id="scrollbar"
-                class="overflow-y-scroll overflow-hidden h-100"
+                id="scrollbar-right"
+                class="scrollbar overflow-y-scroll overflow-hidden"
+                style="min-height: 50vh; max-height: 50vh"
               >
                 <ul class="list-group">
                   <li class="my-2">Elemento 1</li>
@@ -194,83 +200,79 @@
               </div>
             </nav>
           </div>
-          <!-- Start Parte Destra  -->
-          <div id="mainRightOpened" class="col-2 mainRight">
-            <div>
-              <div class="row mb-3">
-                <span class="col col-8 d-flex flex-row align-items-center">
-                  <h4>Attività amici</h4> </span
-                ><span class="col col-2"
-                  ><i id="closeRight" class="bi-person-plus fs-2"></i
-                ></span>
-                <span class="col col-2"
-                  ><i id="closeRight" class="bi bi-x fs-2"></i
-                ></span>
+          <!-- fine sidebar sinistra -->
+          <div class="col-8 bg-secondary"></div>
+          <!-- SIDEBAR  DESTRA -->
+          <div id="mainRightOpened" class="col-2">
+            <div class="row mb-3 align-items-center">
+              <div class="col">
+                <h5>Attività amici</h5>
               </div>
+              <div class="col col-2 fs-4">
+                <i id="closeRight" class="bi-person-plus"></i>
+              </div>
+              <div class="col col-2 fs-4">
+                <i id="closeRight" class="bi bi-x"></i>
+              </div>
+            </div>
+            <div
+              class="overflow-y-scroll overflow-hidden scrollbar"
+              style="min-height: 75vh; max-height: 75vh"
+            >
               <div class="row my-2">
-                <div class="col col-2"><i class="bi bi-person-circle"></i></div>
-                <div class="col col-7">
-                  <h5>Chiara Cioccarelli</h5>
-                  <p class="my-0 fontPiccoloDestra">In Camera • Yumi Zouma</p>
-                  <p class="fontPiccoloDestra">
-                    <i class="bi bi-disc"></i> EP III
-                  </p>
+                <div class="col-1"><i class="bi bi-person-circle"></i></div>
+                <div class="col">
+                  <h6>Chiara Cioccarelli</h6>
+                  <p class="my-0 fs-11px">In Camera • Yumi Zouma</p>
+                  <p class="fs-11px"><i class="bi bi-disc"></i> EP III</p>
                 </div>
-                <div class="col col-3">4h fa</div>
+                <div class="col-3 p-0 fs-6 ms-auto">4h fa</div>
               </div>
               <div class="row">
-                <div class="col col-2"><i class="bi bi-person-circle"></i></div>
+                <div class="col-1"><i class="bi bi-person-circle"></i></div>
                 <div class="col col-7">
-                  <h5>Stefania Galazzo</h5>
-                  <p class="my-0 fontPiccoloDestra">
-                    Aimed to Kill • Jade LeMac
-                  </p>
-                  <p class="fontPiccoloDestra">
+                  <h6>Stefania Galazzo</h6>
+                  <p class="my-0 fs-11px">Aimed to Kill • Jade LeMac</p>
+                  <p class="fs-11px">
                     <i class="bi bi-disc"></i> Aimed to Kill
                   </p>
                 </div>
-                <div class="col col-3">6h fa</div>
+                <div class="col-3 p-0 fs-6 ms-auto">6h fa</div>
               </div>
               <div class="row">
-                <div class="col col-2"><i class="bi bi-person-circle"></i></div>
+                <div class="col-1"><i class="bi bi-person-circle"></i></div>
                 <div class="col col-7">
-                  <h5>Gerta Koni</h5>
-                  <p class="my-0 fontPiccoloDestra">
-                    New Kings • Sleeping Wolf
-                  </p>
-                  <p class="fontPiccoloDestra">
+                  <h6>Gerta Koni</h6>
+                  <p class="my-0 fs-11px">New Kings • Sleeping Wolf</p>
+                  <p class="fs-11px">
                     <i class="bi bi-music-note-beamed"></i> Twint Badass mood
                   </p>
                 </div>
-                <div class="col col-3">8h fa</div>
+                <div class="col-3 p-0 fs-6 ms-auto">8h fa</div>
               </div>
               <div class="row">
-                <div class="col col-2"><i class="bi bi-person-circle"></i></div>
+                <div class="col-1"><i class="bi bi-person-circle"></i></div>
                 <div class="col col-7">
-                  <h5>Federico Mottola</h5>
-                  <p class="my-0 fontPiccoloDestra">In Banca • Money</p>
-                  <p class="fontPiccoloDestra">
-                    <i class="bi bi-bank"></i> Banca Money
-                  </p>
+                  <h6>Federico Mottola</h6>
+                  <p class="my-0 fs-11px">In Banca • Money</p>
+                  <p class="fs-11px"><i class="bi bi-bank"></i> Banca Money</p>
                 </div>
-                <div class="col col-3">12h fa</div>
+                <div class="col-3 p-0 fs-6 ms-auto">12h fa</div>
               </div>
               <div class="row">
-                <div class="col col-2"><i class="bi bi-person-circle"></i></div>
+                <div class="col-1"><i class="bi bi-person-circle"></i></div>
                 <div class="col col-7">
-                  <h5>Michele Martone</h5>
-                  <p class="my-0 fontPiccoloDestra">
-                    New Kings • Sleeping Wolf
-                  </p>
-                  <p class="fontPiccoloDestra">
+                  <h6>Michele Martone</h6>
+                  <p class="my-0 fs-11px">New Kings • Sleeping Wolf</p>
+                  <p class="fs-11px">
                     <i class="bi bi-music-note-beamed"></i> Twint Badass mood
                   </p>
                 </div>
-                <div class="col col-3">2h fa</div>
+                <div class="col-3 p-0 fs-6 ms-auto">2h fa</div>
               </div>
             </div>
           </div>
-          <!--End Parte Destra-->
+          <!-- fine sidebar destra -->
         </div>
       </div>
       <!-- ACTIONS BAR  -->
@@ -361,7 +363,7 @@
           </div>
         </div>
       </div>
-      <!-- FINE ACTIONS BAR  -->
+      <!-- fine actions bar  -->
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
