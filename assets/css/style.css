@@ -19,3 +19,13 @@
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #ffffff5c;
 }
+.bg-linear-dark {
+  background-image: linear-gradient(to top, #020202 40%, #2f2f2f);
+}
+.bg-green {
+  background-color: #1dd65f;
+}
+
+.bg-dark-grey {
+  background-color: #101010;
+}
