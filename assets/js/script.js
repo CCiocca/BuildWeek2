@@ -147,11 +147,11 @@ function printJumbo() {
 }
 
 // onclick play current song
-const playBtn = document.getElementById("playBtn");
+const playBtn = document.querySelectorAll(".playBtn");
 let isPlaying = false;
 let songToPlay;
 
-playBtn.onclick = togglePlayPause;
+playBtn.forEach((el) => (el.onclick = () => togglePlayPause()));
 
 function togglePlayPause() {
   let currentSong = arraySongs[0];
@@ -173,5 +173,5 @@ function togglePlayPause() {
   // riagggiorna lo stato
   isPlaying = !isPlaying;
   // aggiorno il testo in base alla condiz
-  playBtn.innerText = isPlaying ? "Pause" : "Play";
+  //   playBtn.innerText = isPlaying ? "Pause" : "Play";
 }
