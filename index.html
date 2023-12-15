@@ -302,7 +302,7 @@
               </div>
             </div>
             <!--fine hero-->
-            <h4 class="mt-3 text-white">Buonasera!</h4>
+            <h4 id="helloSpotify" class="mt-3 text-white">Buonasera</h4>
             <div id="containerBuonasera" class="row">
               <!-- <div class="col-4">
                 <div class="card border-0 mb-3" style="max-width: 540px">
@@ -569,13 +569,13 @@
                 <i id="shuffle" class="col bi bi-shuffle"></i>
               </div>
               <div class="col-1">
-                <i id="prevSogn" class="col bi bi-caret-left-fill"></i>
+                <i id="prevBtn" class="col bi bi-caret-left-fill"></i>
               </div>
               <div class="col-1">
                 <i class="playBtn col bi bi-play-circle-fill"></i>
               </div>
               <div class="col-1">
-                <i id="nextSong" class="col bi bi-caret-right-fill"></i>
+                <i id="nextBtn" class="col bi bi-caret-right-fill"></i>
               </div>
               <div class="col-1 fs-5">
                 <i id="repeat" class="bi bi-repeat"></i>
@@ -586,7 +586,12 @@
                 <span class="fs-6 text-secondary">0:58</span>
               </div>
               <div class="col-10">
-                <input type="range" class="w-100" data-label="song seconds" />
+                <input
+                  id="barTrack"
+                  type="range"
+                  class="w-100"
+                  data-label="song seconds"
+                />
               </div>
               <div class="col">
                 <span class="fs-6 text-secondary">0:58</span>
