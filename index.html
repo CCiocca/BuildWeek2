@@ -210,13 +210,13 @@
                     class="col-1 text-center p-0 me-3 bg-black rounded-pill"
                     style="max-width: 25px; max-height: 25px"
                   >
-                    <i class="bi bi-chevron-left"></i>
+                    <i id="goBack" class="bi bi-chevron-left"></i>
                   </div>
                   <div
                     class="col-1 text-center p-0 bg-black rounded-pill"
                     style="max-width: 25px; max-height: 25px"
                   >
-                    <i class="bi bi-chevron-right"></i>
+                    <i id="goForward" class="bi bi-chevron-right"></i>
                   </div>
                 </div>
               </div>
@@ -261,6 +261,7 @@
                 style="max-height: 180px; min-width: 180px"
               >
                 <img
+                  class="imgsCover"
                   src="https://images.unsplash.com/photo-1543366156-5b1f92176c31?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   width="100%"
                 />
@@ -285,11 +286,9 @@
                   <span class="artist">Nome 1, Nome 2</span>
                 </p>
                 <div class="d-flex justify-content-start">
-                  <button
-                    class="playBtn btn rounded-pill px-3 bg-green text-black fw-bold py-2 fs-4"
-                  >
-                    <i class="bi bi-play-fill"></i>
-                  </button>
+                  <i
+                    class="playBtn color-green display-5 bi bi-play-circle-fill"
+                  ></i>
                   <button
                     class="btn bg-black mx-3 text-white border border-light rounded-pill px-4 py-2"
                   >
@@ -461,12 +460,12 @@
           <div id="mainRightOpened" class="col-2">
             <div class="row mb-3 align-items-center">
               <div class="col">
-                <h5>Attività amici</h5>
+                <h5 class="mt-2 mb-0">Attività amici</h5>
               </div>
-              <div class="col col-2 fs-4">
+              <div class="col col-2 fs-5">
                 <i id="closeRight" class="bi-person-plus"></i>
               </div>
-              <div class="col col-2 fs-4">
+              <div class="col col-2 fs-5">
                 <i id="closeRight" class="bi bi-x"></i>
               </div>
             </div>
@@ -544,19 +543,25 @@
                 style="max-height: 80px"
               >
                 <img
+                  class="imgsCover"
                   src="https://images.unsplash.com/photo-1543366156-5b1f92176c31?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   width="100px"
                   alt="album"
                 />
               </div>
-              <div class="col-3 px-2">
-                <h5 class="text-white mb-0">
-                  Title
-                  <span class="text-secondary fs-6 fw-normal">Artist</span>
-                </h5>
+              <div class="col-4 px-2">
+                <h5 id="songTitleActionBar" class="text-white mb-0">Title</h5>
+                <span
+                  id="artistTitleActionBar"
+                  class="text-secondary fs-6 fw-normal"
+                  >Artist</span
+                >
               </div>
               <div class="col">
-                <i class="bi bi-heart text-white"></i>
+                <i
+                  title="qui metto il title"
+                  class="bi bi-heart text-white"
+                ></i>
               </div>
             </div>
           </div>
@@ -583,7 +588,9 @@
             </div>
             <div class="row justify-content-center align-items-center">
               <div class="col">
-                <span class="fs-6 text-secondary">0:58</span>
+                <span id="currentTime" class="fs-6 text-nowrap text-secondary"
+                  >0:58</span
+                >
               </div>
               <div class="col-10">
                 <input
@@ -594,7 +601,9 @@
                 />
               </div>
               <div class="col">
-                <span class="fs-6 text-secondary">0:58</span>
+                <span id="timeLeft" class="fs-6 text-nowrap text-secondary"
+                  >0:58</span
+                >
               </div>
             </div>
           </div>

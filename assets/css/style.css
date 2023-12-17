@@ -2,6 +2,28 @@
   font-size: 11px;
 }
 
+#songTitleActionBar {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-height: 50px;
+}
+#hero-artist {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 420px;
+  overflow: hidden;
+  display: grid;
+  align-content: center;
+}
+.text-hero {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+}
 .scrollbar::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -20,10 +42,13 @@
   background-color: #ffffff5c;
 }
 .bg-linear-dark {
-  background-image: linear-gradient(to top, #020202 40%, #2f2f2f);
+  background-image: linear-gradient(to top, #020202 35%, #2f2f2f);
 }
 .bg-green {
   background-color: #1dd65f;
+}
+.color-green {
+  color: #1dd65f;
 }
 
 .bg-dark-grey {
