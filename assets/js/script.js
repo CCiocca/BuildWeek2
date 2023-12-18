@@ -1,5 +1,10 @@
 const myUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 //query exemple [queen];
+// let pageURL  = window.location.search;
+// const productId = new URLSearchParams(prodURL).get("id");
+
+let timeLeftInterval; //per il tempo di scorrimento della canzone nell'actionbar
+let currentTimeInterval; //per il tempo di scorrimento della canzone nell'actionbar
 
 let arrayAlbums = [];
 let arraySongs = [];
@@ -10,6 +15,7 @@ window.onload = () => {
   getData("alt-j");
   getData("queen");
   getData("dua-lipa");
+  handleNavigation();
 };
 
 //recupero i dati dall API e li uso per riempire gli array
@@ -28,16 +34,19 @@ function getData(query) {
 }
 
 /*
-#1 refactor codice (window.onload etc)
-#2 popolato home jumbo + cards
+#1 popolato pagine
+#2 click on albums / click on cards songs  <<<<<<<<<<<<<<<< STILL TO DO 
 #3 aggiunto filtri per doppioni nelle createArray
-#4 aggiunto tag audio nella card con la prew della canzone
-#5 aggiunta gestione play/pause del currentTrack in jumbo e actions bar
+#4 aggiunto tagHTML <audio> nella card con la preview della canzone
+#5 aggiunta gestione play/pause della currentTrack in jumbo e actions bar
 #6 aggiunta buongiornobuonasera
 #7 aggiunta funzione scorrimento barra traccia 
-   
-   tofix:
-#8 next/prev currentSong
+#8 aggiunta next/prev print jumbo
+#9 aggiunta page navigation su freccette in alto >>>>>>>> TO TEST
+
+   TO FIX:
+#10 next/prev play currentSong
+#11 scorrere del minutaggio 
 */
 
 // onclick PLAY current song
@@ -69,6 +78,7 @@ function togglePlayPause(crrSng) {
   isPlaying = !isPlaying;
   // funzione per la barra di scorrimento
   songTrackBar(songToPlay);
+  handleSongTime(crrSng, isPlaying);
 }
 // creo gli array con i dati che devo stampare
 function handleCreateArrays(data) {
@@ -100,6 +110,7 @@ function handlePrintData() {
   printSideList();
   printSongs();
   printJumbo();
+  handleSongTime();
 }
 function printAlbums() {
   const containerBuonasera = document.getElementById("containerBuonasera");
@@ -107,9 +118,8 @@ function printAlbums() {
   for (let i = 0; i < 6; i++) {
     const newCard = document.createElement("div");
     newCard.classList.add("col-4");
-
     newCard.innerHTML = `
-          <div class="card overflow-hidden border-0 mb-3" style="max-width: 540px">
+          <div class="albumCard card overflow-hidden border-0 mb-3" style="max-width: 540px" data-id=${arrayAlbums[i].id}>
               <div class="row g-0">
                   <div class="col overflow-hidden" style="max-width: 80px">
                   <img
@@ -126,10 +136,17 @@ function printAlbums() {
                   </div>
                   </div>
               </div>
-          </div>
-      `;
+          </div>`;
     containerBuonasera.appendChild(newCard);
   }
+  const albumCards = document.querySelectorAll(".albumCard");
+  albumCards.forEach((el) => {
+    const dataId = el.getAttribute("data-id");
+    // console.log(el, "EL");
+    el.onclick = () => {
+      goOnPage("album", dataId);
+    };
+  });
 }
 function printSideList() {
   const containerSideList = document.getElementById("containerSideList");
@@ -174,6 +191,7 @@ function printSongs() {
 }
 function printJumbo(crrSng) {
   const jumboTitle = document.getElementById("jumboTitle");
+  const imgsCover = document.querySelectorAll(".imgsCover");
   const type = document.querySelectorAll(".type");
   const artist = document.querySelectorAll(".artist");
   crrSng ? "" : (crrSng = arraySongs[0]);
@@ -184,7 +202,16 @@ function printJumbo(crrSng) {
   artist.forEach((el) => {
     el.innerText = crrSng?.artist.name;
   });
-  // return currentSong;
+  imgsCover.forEach((el) => {
+    el.setAttribute("src", crrSng?.album.cover);
+  });
+  // print actionbar side left
+  const songTitleActionBar = document.getElementById("songTitleActionBar");
+  const artistTitleActionBar = document.getElementById("artistTitleActionBar");
+  songTitleActionBar.setAttribute("title", `${crrSng?.title}`);
+  songTitleActionBar.innerText = crrSng?.title;
+  artistTitleActionBar.innerText = crrSng?.artist.name;
+  // songTitleActionBar.appendChild(artistTitleActionBar);
 }
 
 // buongiorno e buonasera!
@@ -196,7 +223,7 @@ function helloSpoty() {
     : (textHello.innerText = "Buonasera");
 }
 
-// barra sccorrimento audio
+// barra scorrimento audio
 function songTrackBar(track) {
   // mi assicuro di eseguire le funzioni solo mentre i metadati sono caricati
   track.addEventListener("loadedmetadata", function () {
@@ -204,7 +231,6 @@ function songTrackBar(track) {
     let trackDuration = track.duration;
     const barTrack = document.getElementById("barTrack");
     barTrack.max = trackDuration; // Imposta il massimo valore della barra di tracciamento
-
     // value durante la riproduzione
     track.addEventListener("timeupdate", function () {
       barTrack.value = track.currentTime;
@@ -212,7 +238,6 @@ function songTrackBar(track) {
   });
   console.log(track, "track");
 }
-
 // current song next/prev
 function handleCurrentSong() {
   const prevBtn = document.getElementById("prevBtn");
@@ -222,7 +247,7 @@ function handleCurrentSong() {
     const newIndex = (currentIndex - 1 + arraySongs.length) % arraySongs.length;
     currentSong = arraySongs[newIndex];
     printJumbo(currentSong);
-    console.log(currentSong, "currentsong prev");
+    // console.log(currentSong, "currentsong prev");
   };
 
   nextBtn.onclick = () => {
@@ -230,8 +255,65 @@ function handleCurrentSong() {
     const newIndex = (currentIndex + 1) % arraySongs.length;
     currentSong = arraySongs[newIndex];
     printJumbo(currentSong);
-    console.log(currentSong, "currentsong prev");
+    // console.log(currentSong, "currentsong prev");
   };
+}
+
+// cambio pagina
+function goOnPage(page, id) {
+  window.location.href = `${page}.html?id=${id}`;
+}
+// navigazione tra pagine - accedo alla history di navigazione (torno indietro o vado avanti nelle pagine visitate)
+function handleNavigation() {
+  const goBackBTN = document.getElementById("goBack");
+  const goForwardBTN = document.getElementById("goForward");
+  goBackBTN.onclick = goBack;
+  goForwardBTN.onclick = goForward;
+}
+function goBack() {
+  window.history.back();
+}
+function goForward() {
+  window.history.forward();
+}
+
+//funzione per lo scorrimento del tempo della traccia (actionbar in html)
+function handleSongTime(crrSng, isOnPlay) {
+  crrSng ? "" : (crrSng = arraySongs[0]);
+  const currentTimeIndicartor = document.getElementById("currentTime");
+  const timeLeftIndicartor = document.getElementById("timeLeft");
+  let sec = crrSng.duration;
+  let min = sec / 60;
+  timeLeftIndicartor.innerText = min.toFixed(2);
+  currentTimeIndicartor.innerText = "00:00";
+  if (currentTimeInterval) clearInterval(currentTimeInterval);
+  if (timeLeftInterval) clearInterval(timeLeftInterval);
+  if (isOnPlay) {
+    timeLeftInterval = setInterval(function timerTimeLeft() {
+      min = --sec / 60;
+      let formattedMin = Math.round(min * 100) / 100;
+      min = formattedMin;
+      timeLeftIndicartor.innerText =
+        formattedMin.toString().length < 4
+          ? `- ${formattedMin.toString().padEnd(4, "0")}`
+          : `- ${formattedMin}`;
+    }, 999);
+
+    let start = 0;
+    currentTimeInterval = setInterval(function timerCurrentTimeInterval() {
+      if (start < sec) {
+        start++;
+        min = start / 60;
+        let formattedMin = Math.round(min * 100) / 100;
+        currentTimeIndicartor.innerText =
+          formattedMin.toString().length < 4
+            ? `${formattedMin.toString().padEnd(4, "0")}`
+            : `${formattedMin}`;
+      } else {
+        clearInterval(currentTimeInterval);
+      }
+    }, 999);
+  }
 }
 
 /*
