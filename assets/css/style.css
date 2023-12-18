@@ -54,3 +54,11 @@
 .bg-dark-grey {
   background-color: #101010;
 }
+
+.bg-top-album-page {
+  background-image: linear-gradient(to top, #a18e3e 70%, #DCBD4E );
+}
+
+.bg-linear-to-trasp{
+  background-image: linear-gradient(to top, #191919 60%, #00000029 );
+}
