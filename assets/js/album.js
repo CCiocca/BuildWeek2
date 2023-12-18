@@ -76,9 +76,7 @@ function populateHero(data) {
     </div>
     <div class="col pt-3 mt-4">
       <div class="d-flex justify-content-between align-items-center">
-        <p
-          class="type text-uppercase mb-1 text-white fs-11px fw-bold"
-        >
+        <p class="type text-uppercase mb-1 text-white fs-11px fw-bold">
           album
         </p>
       </div>
@@ -95,8 +93,9 @@ function populateHero(data) {
           data-id=${data.artist.id}
         />
         <span class="artistLink fw-bold" data-id=${data.artist.id}>${data.artist.name}</span> •
-        <span>Anno</span> • <span>numero brani,</span
-        ><span class="fw-light"> Durata</span>
+        <span>${data.release_date.slice(0,4)}</span> • 
+        <span>${data.nb_tracks} brani,</span>
+        <span class="fw-light">${data.duration/60}</span>
       </p>
     </div>`;
  containerAlbum.innerHTML = newAlbum;
@@ -121,16 +120,20 @@ function populateSongsList (data){
   // console.log(data.tracks.data[0], "io dovrei essere il primo brano album")
   for (let i = 0; i < data.tracks.data.length; i++) {
     let durationInMinutes = data.tracks.data[i].duration / 60;
+    let durationTwoDecimals = durationInMinutes.toFixed(2)
+    let durationFourNumbers = durationTwoDecimals.toString().length < 4
+          ? durationTwoDecimals.toString().padEnd(4, "0")
+          : durationTwoDecimals;
     let newSong = 
     `
-  <div class="col-1 d-flex justify-content-end">
+  <div class="col-1 d-flex justify-content-end fs-6">
     <p>${i+1}</p>
   </div>
   <div class="col-5">
     <h6 class="text-white">
       ${data.tracks.data[i].title}
     </h6>
-    <p class="fs-11px">
+    <p class="artistLink fs-11px" data-id=${data.artist.id}>
       ${data.tracks.data[i].artist.name}
     </p>
   </div>
@@ -138,10 +141,24 @@ function populateSongsList (data){
     <p>${data.tracks.data[i].rank}</p>
   </div>
   <div class="col-3 d-flex justify-content-end pe-5">
-    <p>${durationInMinutes}</p>
+    <p>${durationFourNumbers}</p>
   </div>
   ` 
   containerAlbumSongs.innerHTML += newSong
-}}
+};
+const artistLink = document.querySelectorAll(".artistLink");
+artistLink.forEach((el) => {
+ const dataId = el.getAttribute("data-id");
+ el.onclick = () => {
+   goOnPage("artist", dataId)
+ }
+})}
 
 
+/*
+1) update pagine artist e album:
+2) 4 cifre sulla durata in min dei brani
+3) sistemata la hero di album con anno, durata in min
+4) finito di popolare le canzoni della pagina artist, bisogna sistemare la grafica
+5) allineato items album page, nella lista, in modo che il num fosse centrato col resto della riga 
+*/

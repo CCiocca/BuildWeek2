@@ -27,7 +27,6 @@ function getDataAlbum() {
 
 
 
-
 // accedo alla history di navigazione (torno indietro o vado avanti nelle pagine visitate)
 function handleNavigation() {
   const goBackBTN = document.getElementById("goBack");
@@ -97,6 +96,10 @@ let containerArtistSongs = document.getElementById("containerArtistSongs");
 containerArtistSongs.innerHTML = "";
 for (let i = 0; i < data.data.length; i++) {
   let durationInMinutes = data.data[i].duration / 60;
+  let durationTwoDecimals = durationInMinutes.toFixed(2)
+    let durationFourNumbers = durationTwoDecimals.toString().length < 4
+          ? durationTwoDecimals.toString().padEnd(4, "0")
+          : durationTwoDecimals;
   let newSong = 
   `
   <li class="list-group-item d-flex mb-3 align-items-center">
@@ -114,7 +117,7 @@ for (let i = 0; i < data.data.length; i++) {
   </div>
   <p class="mb-0 me-5">${data.data[i].title}</p>
   <p class="mb-0">${data.data[i].rank}</p>
-  <p class="mb-0 ms-auto">${durationInMinutes}</p>
+  <p class="mb-0 ms-auto">${durationFourNumbers}</p>
 </li>
 ` 
 containerArtistSongs.innerHTML += newSong
