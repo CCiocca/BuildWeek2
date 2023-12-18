@@ -76,6 +76,8 @@ containerHero.innerHTML = newArtist;
 };
 
 
+// va fatta un'altra chiamata per popolare le songs
+
 function populateSongsList (data){
 let containerArtistSongs = document.getElementById("containerArtistSongs");
 containerArtistSongs.innerHTML = "";
