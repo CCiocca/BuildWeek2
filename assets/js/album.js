@@ -1,15 +1,39 @@
 let pageURL  = window.location.search;
 const productId = new URLSearchParams(pageURL).get("id");
+// myUrl = "https://api.deezer.com/album/"
+// `${myUrl}/${productId}/tracks`
+// header: {
+//   "Access-Control-Allow-Origin": `${myUrl}/${productId}/tracks`
+// }
+myUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/" + productId;
+
+
+let newArrayAlbums = localStorage.getItem("arrayAlbums");
+newArrayAlbums = JSON.parse(newArrayAlbums);
 
 window.onload = () => {
-  let newArraySongs = localStorage.getItem("arraySongs");
-  let newArrayAlbums = localStorage.getItem("arrayAlbums");
-  newArraySongs = JSON.parse(newArraySongs);
-  newArrayAlbums = JSON.parse(newArrayAlbums);  
-  populatePage(newArraySongs);
+  getDataAlbum()
   handleNavigation();
   printSideList(newArrayAlbums);
 };
+
+// entrando nella pagina album creo url con id album e faccio get con  newArraySongs.album.tracklist
+
+function getDataAlbum() {
+  fetch(myUrl, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data, "io sono l'array album");
+      populateHero(data);
+      populateSongsList(data);
+    })
+    .catch((error) => console.error("Errore durante la fetch:", error));
+}
+
+
+
 // accedo alla history di navigazione (torno indietro o vado avanti nelle pagine visitate)
 function handleNavigation() {
   const goBackBTN = document.getElementById("goBack");
@@ -24,6 +48,7 @@ function goForward() {
   window.history.forward();
 }
 
+
 function printSideList(array) {
   const containerSideList = document.getElementById("containerSideList");
   containerSideList.innerHTML = "";
@@ -37,14 +62,14 @@ function printSideList(array) {
   }
 }
 
-function populatePage(array) {
+function populateHero(data) {
   let containerAlbum = document.getElementById("containerAlbum");
   containerAlbum.innerHTML="";
   let newAlbum = `
     <div class="col-2 p-0 overflow-hidden me-3"
       style="max-height: 170px; min-width: 180px">
       <img
-        src="${array[0].album.cover}"
+        src="${data.cover}"
         width="100%"
         alt="cover album"
       />
@@ -57,55 +82,66 @@ function populatePage(array) {
           album
         </p>
       </div>
-      <h1 id=" " class="text-white fw-bold">${array[0].album.title}</h1>
+      <h1 class="text-white fw-bold">${data.title}</h1>
 
       <p class="mb-3 fs-11px text-white">
         <img
           src="
-          ${array[0].album.cover}"
+          ${data.artist.picture_small}"
           alt="image artista"
           width="20px"
           height="20px"
-          class="rounded-pill"
+          class="artistLink rounded-pill"
+          data-id=${data.artist.id}
         />
-        <span class="artist fw-bold">${array[0].artist.name}</span> •
+        <span class="artistLink fw-bold" data-id=${data.artist.id}>${data.artist.name}</span> •
         <span>Anno</span> • <span>numero brani,</span
         ><span class="fw-light"> Durata</span>
       </p>
     </div>`;
  containerAlbum.innerHTML = newAlbum;
-console.log(array[0]);
-}
+// console.log(array[0]);
+ const artistLink = document.querySelectorAll(".artistLink");
+ artistLink.forEach((el) => {
+  const dataId = el.getAttribute("data-id");
+  el.onclick = () => {
+    goOnPage("artist", dataId)
+  }
+ })
+};
+
+// cambio pagina
+function goOnPage(page, id) {
+  window.location.href = `${page}.html?id=${id}`;
+};
+
+function populateSongsList (data){
+  let containerAlbumSongs = document.getElementById("containerAlbumSongs");
+  containerAlbumSongs.innerHTML = "";
+  // console.log(data.tracks.data[0], "io dovrei essere il primo brano album")
+  for (let i = 0; i < data.tracks.data.length; i++) {
+    let durationInMinutes = data.tracks.data[i].duration / 60;
+    let newSong = 
+    `
+  <div class="col-1 d-flex justify-content-end">
+    <p>${i+1}</p>
+  </div>
+  <div class="col-5">
+    <h6 class="text-white">
+      ${data.tracks.data[i].title}
+    </h6>
+    <p class="fs-11px">
+      ${data.tracks.data[i].artist.name}
+    </p>
+  </div>
+  <div class="col-3 d-flex justify-content-end">
+    <p>${data.tracks.data[i].rank}</p>
+  </div>
+  <div class="col-3 d-flex justify-content-end pe-5">
+    <p>${durationInMinutes}</p>
+  </div>
+  ` 
+  containerAlbumSongs.innerHTML += newSong
+}}
 
 
-// dall'array songs, mi creo un nuovo array contenente tutte le canzoni che hanno come album.title il nome dell'album presente nel div superiore che è array[0].album.title
-
-// Esempio di utilizzo:
-let desiredAlbumTitle = array[0].album.title;
-let arrayAlbumSingolo = filtraOggettiPerChiave(arrayDiOggetti, chiaveDiRicercaDesiderata);
-console.log(nuovoArray);
-
-
-
-/*
-parte sotto da reimpire con le canzioni dell'album
-    <div class="row fs-11px">
-    <div class="col-1 d-flex justify-content-end">
-      <p>num</p>
-    </div>
-    <div class="col-5">
-      <h6 class="text-white">
-        Brano dal nome abbastanza lungo da vedere se fitta
-      </h6>
-      <p class="fs-11px">
-        autore altrettanto lungo ma non troppissimo dai
-      </p>
-    </div>
-    <div class="col-3 d-flex justify-content-end">
-      <p>2.000.000</p>
-    </div>
-    <div class="col-3 d-flex justify-content-end pe-5">
-      <p>50:00</p>
-    </div>
-    </div>
-*/
