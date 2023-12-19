@@ -81,9 +81,12 @@ function togglePlayPause(crrSng) {
   handleSongTime(crrSng, isPlaying);
 }
 // creo gli array con i dati che devo stampare
+//salviamo gli array in local storage
 function handleCreateArrays(data) {
   createArrayAlbums(data);
   createArraySongs(data);
+  localStorage.setItem("arraySongs", JSON.stringify(arraySongs));
+  localStorage.setItem("arrayAlbums", JSON.stringify(arrayAlbums));
 }
 function createArrayAlbums(data) {
   for (let i = 0; i < data.data.length; i++) {

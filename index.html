@@ -67,8 +67,10 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <!-- <a class="nav-link" href="#"> -->
+                    <form class="d-flex align-items-center" role="search">
                       <svg
+                        id="searchBtn"
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
@@ -80,8 +82,22 @@
                           d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
                         ></path>
                       </svg>
-                      <p class="d-inline px-1">Cerca</p>
-                    </a>
+                      <input
+                        id="inputSearch"
+                        class="form-control bg-black border-0 p-2 me-2"
+                        type="search"
+                        placeholder="Cerca"
+                        aria-label="Cerca"
+                      />
+                      <!-- <button
+                        id="searchBtn"
+                        class="btn btn-outline-success"
+                        type="button"
+                      >
+                        Search
+                      </button> -->
+                    </form>
+                    <!-- </a> -->
                   </li>
 
                   <li class="nav-item">
@@ -169,7 +185,7 @@
               <div
                 id="scrollbar-right"
                 class="scrollbar overflow-y-scroll overflow-hidden"
-                style="min-height: 50vh; max-height: 50vh"
+                style="min-height: 50vh; max-height: 50vh; margin-bottom: 88px"
               >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
@@ -201,7 +217,7 @@
           <!-- COLONNA CENTRALE -->
           <div
             class="col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar"
-            style="max-height: calc(100vh - 112px)"
+            style="max-height: calc(100vh - 44px)"
           >
             <div class="row sticky-top">
               <div class="col">
@@ -533,14 +549,14 @@
       <!-- ACTIONS BAR  -->
       <div
         id="mainActions"
-        class="container-fluid bg-dark p-3 position-fixed bottom-0 justify-content-center align-items-center"
+        class="container-fluid bg-dark py-2 px-3 position-fixed bottom-0 justify-content-center align-items-center"
       >
         <div class="row justify-content-center">
           <div class="col-md-3 align-items-center justify-content-start">
             <div class="row align-items-center">
               <div
-                class="col-3 px-2 overflow-hidden rounded"
-                style="max-height: 80px"
+                class="col-3 ms-2 overflow-hidden rounded p-0"
+                style="max-height: 70px; max-width: 70px"
               >
                 <img
                   class="imgsCover"
