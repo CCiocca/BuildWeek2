@@ -17,8 +17,8 @@
   </head>
   <body class="bg-black" data-bs-theme="dark">
     <main>
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid overflow-hidden py-0">
+        <div class="row" style="min-height: calc(100vh - 88px)">
           <!-- SIDEBAR  SINISTRA -->
           <div class="col-2">
             <nav class="nav flex-column">
@@ -176,7 +176,7 @@
               <div
                 id="scrollbar-right"
                 class="scrollbar overflow-y-scroll overflow-hidden"
-                style="min-height: 50vh; max-height: 50vh; margin-bottom: 88px"
+                style="max-height: 42vh"
               >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
@@ -207,8 +207,8 @@
 
           <!-- COLONNA CENTRALE -->
           <div
-            class="col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar"
-            style="max-height: calc(100vh - 44px)"
+            class="col-8 pt-3 py-3 px-4 bg-linear-dark position-relative bg-top-album-page overflow-y-scroll scrollbar overflow-x-hidden"
+            style="max-height: calc(100vh - 88px)"
           >
             <div class="row sticky-top">
               <div class="col">
@@ -291,97 +291,94 @@
             <!--fine hero-->
             <h4 id="titleResult" class="mt-3 text-white">Sfoglia tutto</h4>
             <div id="containerSearchResults" class="row">
-<div class="col-3">
-                  <div class="card p-3 border-0 bg-dark-grey">
-                      <h3 class="card-title text-white">Podcast</h3>
-                      <img
-                      src="https://images.pexels.com/photos/270288/pexels-photo-270288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                      class="rounded-3"
-                      alt="genre"
-                    />
-                  </div> 
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Podcast</h3>
+                  <img
+                    src="https://images.pexels.com/photos/270288/pexels-photo-270288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
                 </div>
+              </div>
 
-                <div class="col-3">
-                  <div class="card p-3 border-0 bg-dark-grey">
-                      <h3 class="card-title text-white">Create per te</h3>
-                      <img
-                      src="https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                      class="rounded-3"
-                      alt="genre"
-                    />
-                  </div> 
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Create per te</h3>
+                  <img
+                    src="https://images.pexels.com/photos/1542085/pexels-photo-1542085.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
                 </div>
+              </div>
 
-                <div class="col-3">
-                  <div class="card p-3 border-0 bg-dark-grey">
-                      <h3 class="card-title text-white">Nuove uscite</h3>
-                      <img
-                      src="https://images.pexels.com/photos/3394266/pexels-photo-3394266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                      class="rounded-3"
-                      alt="genre"
-
-                    />
-                  </div> 
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Nuove uscite</h3>
+                  <img
+                    src="https://images.pexels.com/photos/3394266/pexels-photo-3394266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
                 </div>
+              </div>
 
-                <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h3 class="card-title text-white">Indie</h3>
-                        <img
-                        src="https://images.pexels.com/photos/18578343/pexels-photo-18578343.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        class="rounded-3"
-                        alt="genre"
-                      />
-                    </div> 
-                  </div>
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Indie</h3>
+                  <img
+                    src="https://images.pexels.com/photos/18578343/pexels-photo-18578343.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
+                </div>
+              </div>
 
-                  <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h3 class="card-title text-white">Pop</h3>
-                        <img
-                        src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        class="rounded-3"
-                        alt="genre"
-                      />
-                    </div> 
-                  </div>
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Pop</h3>
+                  <img
+                    src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
+                </div>
+              </div>
 
-                  <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h3 class="card-title text-white">Rock</h3>
-                        <img
-                        src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        class="rounded-3"
-                        alt="genre"
-                      />
-                    </div> 
-                  </div>
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Rock</h3>
+                  <img
+                    src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
+                </div>
+              </div>
 
-                  <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h3 class="card-title text-white">Latina</h3>
-                        <img
-                        src="https://images.pexels.com/photos/8919738/pexels-photo-8919738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        class="rounded-3"
-                        alt="genre"
-                      />
-                    </div> 
-                  </div>
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Latina</h3>
+                  <img
+                    src="https://images.pexels.com/photos/8919738/pexels-photo-8919738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
+                </div>
+              </div>
 
-                  <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h3 class="card-title text-white">Dance/Elettronica</h3>
-                        <img
-                        src="https://images.pexels.com/photos/19452352/pexels-photo-19452352/free-photo-of-tecnologia-musica-mixer-audio-elettronica.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                        class="rounded-3"
-                        alt="genre"
-                      />
-                    </div> 
-                  </div>
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h3 class="card-title text-white">Dance/Elettronica</h3>
+                  <img
+                    src="https://images.pexels.com/photos/19452352/pexels-photo-19452352/free-photo-of-tecnologia-musica-mixer-audio-elettronica.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    class="rounded-3"
+                    alt="genre"
+                  />
+                </div>
+              </div>
             </div>
-
-
           </div>
           <!-- fine colonna centrale -->
 

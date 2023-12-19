@@ -114,6 +114,17 @@ function populateHero(data) {
     };
   });
   toBlur(data.cover);
+
+  // print actionbar side left
+  const imgsCover = document.querySelectorAll(".imgsCover");
+  imgsCover.forEach((el) => {
+    el.setAttribute("src", data.artist.picture);
+  });
+  const songTitleActionBar = document.getElementById("songTitleActionBar");
+  const artistTitleActionBar = document.getElementById("artistTitleActionBar");
+  songTitleActionBar.setAttribute("title", `${data.title}`);
+  songTitleActionBar.innerText = data.title;
+  artistTitleActionBar.innerText = data.artist.name;
 }
 function toBlur(img) {
   console.log(img, "imgblur");
@@ -125,7 +136,6 @@ function toBlur(img) {
 function goOnPage(page, id) {
   window.location.href = `${page}.html?id=${id}`;
 }
-
 function populateSongsList(data) {
   let containerAlbumSongs = document.getElementById("containerAlbumSongs");
   containerAlbumSongs.innerHTML = "";

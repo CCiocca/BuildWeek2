@@ -139,9 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
   peopleIcon.addEventListener("click", mostraColonnaDestra);
 });
 
-
-
-
 function nascondiColonna() {
   let mainRightOpened = document.getElementById('mainRightOpened');
   mainRightOpened.style.display = 'none';
@@ -167,3 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Aggiungi un gestore di eventi per il click sull'icona delle persone
   peopleIcon.addEventListener("click", mostraColonnaDestra);
 });
+
+
+

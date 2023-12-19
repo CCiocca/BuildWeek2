@@ -7,9 +7,9 @@ newArrayAlbums = JSON.parse(newArrayAlbums);
 
 window.onload = () => {
   getDataAlbum();
-  populateSongsList();
   handleNavigation();
   printSideList(newArrayAlbums);
+  populateSongsList();
 };
 
 function getDataAlbum() {
@@ -45,7 +45,7 @@ function printSideList(array) {
   containerSideList.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const newItem = document.createElement("li");
-    newItem.classList.add("my-2");
+    newItem.classList.add("my-1");
 
     newItem.innerText = `${array[i].title}`;
 
@@ -112,7 +112,7 @@ function generateSongsList(data) {
       height="80px"
     />
   </div>
-  <p class="mb-0 me-5">${data.data[i].title}</p>
+  <p class="mb-0 me-5 col-5">${data.data[i].title}</p>
   <p class="mb-0">${data.data[i].rank}</p>
   <p class="mb-0 ms-auto">${durationFourNumbers}</p>
 </li>
