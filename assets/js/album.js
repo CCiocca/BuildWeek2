@@ -1,4 +1,4 @@
-let pageURL  = window.location.search;
+let pageURL = window.location.search;
 const productId = new URLSearchParams(pageURL).get("id");
 // myUrl = "https://api.deezer.com/album/"
 // `${myUrl}/${productId}/tracks`
@@ -7,12 +7,11 @@ const productId = new URLSearchParams(pageURL).get("id");
 // }
 myUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/" + productId;
 
-
 let newArrayAlbums = localStorage.getItem("arrayAlbums");
 newArrayAlbums = JSON.parse(newArrayAlbums);
 
 window.onload = () => {
-  getDataAlbum()
+  getDataAlbum();
   handleNavigation();
   printSideList(newArrayAlbums);
 };
@@ -32,8 +31,6 @@ function getDataAlbum() {
     .catch((error) => console.error("Errore durante la fetch:", error));
 }
 
-
-
 // accedo alla history di navigazione (torno indietro o vado avanti nelle pagine visitate)
 function handleNavigation() {
   const goBackBTN = document.getElementById("goBack");
@@ -48,13 +45,12 @@ function goForward() {
   window.history.forward();
 }
 
-
 function printSideList(array) {
   const containerSideList = document.getElementById("containerSideList");
   containerSideList.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const newItem = document.createElement("li");
-    newItem.classList.add("my-2");
+    newItem.classList.add("my-1");
 
     newItem.innerText = `${array[i].title}`;
 
@@ -64,9 +60,9 @@ function printSideList(array) {
 
 function populateHero(data) {
   let containerAlbum = document.getElementById("containerAlbum");
-  containerAlbum.innerHTML="";
+  containerAlbum.innerHTML = "";
   let newAlbum = `
-    <div class="col-2 p-0 overflow-hidden me-3"
+   <div class="col-2 p-0 overflow-hidden me-3"
       style="max-height: 170px; min-width: 180px">
       <img
         src="${data.cover}"
@@ -92,42 +88,48 @@ function populateHero(data) {
           class="artistLink rounded-pill"
           data-id=${data.artist.id}
         />
-        <span class="artistLink fw-bold" data-id=${data.artist.id}>${data.artist.name}</span> •
-        <span>${data.release_date.slice(0,4)}</span> • 
+        <span class="artistLink fw-bold" data-id=${data.artist.id}>
+        ${data.artist.name}</span> •
+        <span>${data.release_date.slice(0, 4)}</span> • 
         <span>${data.nb_tracks} brani,</span>
-        <span class="fw-light">${data.duration/60}</span>
+        <span class="fw-light">${data.duration / 60}</span>
       </p>
     </div>`;
- containerAlbum.innerHTML = newAlbum;
-// console.log(array[0]);
- const artistLink = document.querySelectorAll(".artistLink");
- artistLink.forEach((el) => {
-  const dataId = el.getAttribute("data-id");
-  el.onclick = () => {
-    goOnPage("artist", dataId)
-  }
- })
-};
-
+  containerAlbum.innerHTML = newAlbum;
+  const artistLink = document.querySelectorAll(".artistLink");
+  artistLink.forEach((el) => {
+    const dataId = el.getAttribute("data-id");
+    el.onclick = () => {
+      goOnPage("artist", dataId);
+    };
+  });
+  toBlur(data.cover);
+}
+function toBlur(img) {
+  console.log(img, "imgblur");
+  const imgBlur = document.querySelector("#imgBlurred");
+  // backgroundBlur.style.backgroundImage = `url(${img})`;
+  imgBlur.setAttribute("src", `${img}`);
+}
 // cambio pagina
 function goOnPage(page, id) {
   window.location.href = `${page}.html?id=${id}`;
-};
+}
 
-function populateSongsList (data){
+function populateSongsList(data) {
   let containerAlbumSongs = document.getElementById("containerAlbumSongs");
   containerAlbumSongs.innerHTML = "";
   // console.log(data.tracks.data[0], "io dovrei essere il primo brano album")
   for (let i = 0; i < data.tracks.data.length; i++) {
     let durationInMinutes = data.tracks.data[i].duration / 60;
-    let durationTwoDecimals = durationInMinutes.toFixed(2)
-    let durationFourNumbers = durationTwoDecimals.toString().length < 4
-          ? durationTwoDecimals.toString().padEnd(4, "0")
-          : durationTwoDecimals;
-    let newSong = 
-    `
+    let durationTwoDecimals = durationInMinutes.toFixed(2);
+    let durationFourNumbers =
+      durationTwoDecimals.toString().length < 4
+        ? durationTwoDecimals.toString().padEnd(4, "0")
+        : durationTwoDecimals;
+    let newSong = `
   <div class="col-1 d-flex justify-content-end fs-6">
-    <p>${i+1}</p>
+    <p>${i + 1}</p>
   </div>
   <div class="col-5">
     <h6 class="text-white">
@@ -143,17 +145,17 @@ function populateSongsList (data){
   <div class="col-3 d-flex justify-content-end pe-5">
     <p>${durationFourNumbers}</p>
   </div>
-  ` 
-  containerAlbumSongs.innerHTML += newSong
-};
-const artistLink = document.querySelectorAll(".artistLink");
-artistLink.forEach((el) => {
- const dataId = el.getAttribute("data-id");
- el.onclick = () => {
-   goOnPage("artist", dataId)
- }
-})}
-
+  `;
+    containerAlbumSongs.innerHTML += newSong;
+  }
+  const artistLink = document.querySelectorAll(".artistLink");
+  artistLink.forEach((el) => {
+    const dataId = el.getAttribute("data-id");
+    el.onclick = () => {
+      goOnPage("artist", dataId);
+    };
+  });
+}
 
 /*
 1) update pagine artist e album:

@@ -55,10 +55,21 @@
   background-color: #101010;
 }
 
-.bg-top-album-page {
-  background-image: linear-gradient(to top, #a18e3e 70%, #DCBD4E );
-}
+/* .bg-top-album-page {
+  background-image: linear-gradient(to top, #a18e3e 70%, #dcbd4e);
+} */
 
-.bg-linear-to-trasp{
-  background-image: linear-gradient(to top, #191919 60%, #00000029 );
+.bg-linear-to-trasp {
+  background-image: linear-gradient(to top, #191919 60%, #00000029);
+}
+.toBlur {
+  filter: blur(5rem);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+  position: absolute;
+  top: -100px;
+  z-index: 0;
+  left: 0;
+  max-height: 50vh;
 }
