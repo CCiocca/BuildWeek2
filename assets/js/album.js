@@ -63,6 +63,12 @@ function printSideList(array) {
 }
 
 function populateHero(data) {
+  console.log(data, "io sono l'array della hero");
+  let durationInMinutes = data.duration / 60;
+  let durationTwoDecimals = durationInMinutes.toFixed(2)
+  let durationFourNumbers = durationTwoDecimals.toString().length < 4
+        ? durationTwoDecimals.toString().padEnd(4, "0")
+        : durationTwoDecimals;
   let containerAlbum = document.getElementById("containerAlbum");
   containerAlbum.innerHTML="";
   let newAlbum = `
@@ -95,7 +101,7 @@ function populateHero(data) {
         <span class="artistLink fw-bold" data-id=${data.artist.id}>${data.artist.name}</span> •
         <span>${data.release_date.slice(0,4)}</span> • 
         <span>${data.nb_tracks} brani,</span>
-        <span class="fw-light">${data.duration/60}</span>
+        <span class="fw-light">${durationFourNumbers}</span>
       </p>
     </div>`;
  containerAlbum.innerHTML = newAlbum;
