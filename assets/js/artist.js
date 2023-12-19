@@ -21,6 +21,7 @@ function getDataAlbum() {
       console.log(data, "io sono l'array album");
       populateHero(data);
       populateSongsList(data);
+      populateArtistLikes(data);
     })
     .catch((error) => console.error("Errore durante la fetch:", error));
 }
@@ -122,3 +123,8 @@ for (let i = 0; i < data.data.length; i++) {
 ` 
 containerArtistSongs.innerHTML += newSong
 }}
+
+function populateArtistLikes(data){
+  let artistLikes = document.getElementById("artistLikes");
+  artistLikes.innerText = `Di ${data.name}`
+}
