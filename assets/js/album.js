@@ -5,7 +5,7 @@ const productId = new URLSearchParams(pageURL).get("id");
 // header: {
 //   "Access-Control-Allow-Origin": `${myUrl}/${productId}/tracks`
 // }
-let myUrl = `https://striveschool-api.herokuapp.com/api/deezer/album/${productId};`;
+myUrl = "https://striveschool-api.herokuapp.com/api/deezer/album/" + productId;
 
 let newArrayAlbums = localStorage.getItem("arrayAlbums");
 newArrayAlbums = JSON.parse(newArrayAlbums);
@@ -50,7 +50,7 @@ function printSideList(array) {
   containerSideList.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const newItem = document.createElement("li");
-    newItem.classList.add("my-2");
+    newItem.classList.add("my-1");
 
     newItem.innerText = `${array[i].title}`;
 
@@ -69,7 +69,7 @@ function populateHero(data) {
   let containerAlbum = document.getElementById("containerAlbum");
   containerAlbum.innerHTML = "";
   let newAlbum = `
-    <div class="col-2 p-0 overflow-hidden me-3"
+   <div class="col-2 p-0 overflow-hidden me-3"
       style="max-height: 170px; min-width: 180px">
       <img
         src="${data.cover}"
@@ -112,8 +112,14 @@ function populateHero(data) {
       goOnPage("artist", dataId);
     };
   });
+  toBlur(data.cover);
 }
-
+function toBlur(img) {
+  console.log(img, "imgblur");
+  const imgBlur = document.querySelector("#imgBlurred");
+  // backgroundBlur.style.backgroundImage = `url(${img})`;
+  imgBlur.setAttribute("src", `${img}`);
+}
 // cambio pagina
 function goOnPage(page, id) {
   window.location.href = `${page}.html?id=${id}`;
