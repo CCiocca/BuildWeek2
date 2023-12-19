@@ -81,9 +81,12 @@ function togglePlayPause(crrSng) {
   handleSongTime(crrSng, isPlaying);
 }
 // creo gli array con i dati che devo stampare
+//salviamo gli array in local storage
 function handleCreateArrays(data) {
   createArrayAlbums(data);
   createArraySongs(data);
+  localStorage.setItem("arraySongs", JSON.stringify(arraySongs));
+  localStorage.setItem("arrayAlbums", JSON.stringify(arrayAlbums));
 }
 function createArrayAlbums(data) {
   for (let i = 0; i < data.data.length; i++) {
@@ -321,3 +324,28 @@ currentIndex - 1: Sottrai 1 all'indice corrente. Questo ti dà l'indice del bran
 + arraySongs.length: Aggiungi la lunghezza dell'array. Questo passo è fondamentale per gestire il caso in cui currentIndex - 1 è negativo. Aggiungendo la lunghezza dell'array, ci assicuriamo che l'indice risultante sia positivo o zero.
 % arraySongs.length: L'operazione % arraySongs.length garantisce che il risultato sia un numero nell'intervallo da 0 a arraySongs.length - 1.
 */
+function nascondiColonna() {
+  let mainRightOpened = document.getElementById('mainRightOpened');
+  mainRightOpened.style.display = 'none';
+  
+  let colCentral = document.querySelector('.col-8');
+  colCentral.classList.add('col-10');
+}
+document.addEventListener("DOMContentLoaded", function () {
+  let rightColumn = document.getElementById("mainRightOpened");
+  let centerColumn = document.querySelector(".col-8");
+
+  let peopleIcon = document.getElementById("peopleIcon");
+
+  function mostraColonnaDestra() {
+    // Mostra la colonna destra
+    rightColumn.style.display = "block";
+
+    // Ripristina le dimensioni della colonna centrale
+    centerColumn.classList.remove("col-10");
+    centerColumn.classList.add("col-8");
+  }
+
+  // Aggiungi un gestore di eventi per il click sull'icona delle persone
+  peopleIcon.addEventListener("click", mostraColonnaDestra);
+});

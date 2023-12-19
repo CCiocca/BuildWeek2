@@ -17,8 +17,8 @@
   </head>
   <body class="bg-black" data-bs-theme="dark">
     <main>
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid overflow-hidden py-0">
+      <div class="row" style="min-height: calc(100vh - 88px)">
           <!-- SIDEBAR  SINISTRA -->
           <div class="col-2">
             <nav class="nav flex-column">
@@ -67,8 +67,10 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      <svg
+                    
+                   <a class="nav-link" href="search.html"> 
+                    <svg
+                        id="searchBtn"
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
@@ -81,7 +83,7 @@
                         ></path>
                       </svg>
                       <p class="d-inline px-1">Cerca</p>
-                    </a>
+                    </a> 
                   </li>
 
                   <li class="nav-item">
@@ -167,10 +169,10 @@
               <hr />
 
               <div
-                id="scrollbar-right"
-                class="scrollbar overflow-y-scroll overflow-hidden"
-                style="min-height: 50vh; max-height: 50vh"
-              >
+              id="scrollbar-right"
+              class="scrollbar overflow-y-scroll overflow-hidden"
+              style="max-height: 42vh"
+            >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
                   <li class="my-2">Elemento 2</li>
@@ -200,8 +202,8 @@
 
           <!-- COLONNA CENTRALE -->
           <div
-            class="col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar"
-            style="max-height: calc(100vh - 112px)"
+            class="col-8 py-3 px-4 bg-linear-dark position-relative bg-top-album-page overflow-y-scroll scrollbar overflow-x-hidden"
+            style="max-height: calc(100vh - 88px)"
           >
             <div class="row sticky-top">
               <div class="col">
@@ -220,8 +222,10 @@
                   </div>
                 </div>
               </div>
+              
               <div class="col-2 ms-auto text-end">
                 <div class="dropdown">
+                  <i class="bi bi-people" id="peopleIcon" onclick="mostraColonna()"></i>
                   <button
                     class="fs-11px p-1 pe-2 border-0 rounded-pill bg-black btn btn-secondary dropdown-toggle"
                     type="button"
@@ -229,26 +233,29 @@
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img
+                  
+                  <img
                       src="
                 https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                       alt="image utente"
                       width="20px"
                       height="20px"
                       class="rounded-pill"
-                    />
+                      />
+
                     <p class="m-0 mt-1 d-inline">Chiara Cioccarelli</p>
                   </button>
                   <ul
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Account</a></li>
                     <li>
-                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Impostazioni</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <hr />
+                      <a class="dropdown-item" href="#">Esci</a>
                     </li>
                   </ul>
                 </div>
@@ -466,7 +473,7 @@
                 <i id="closeRight" class="bi-person-plus"></i>
               </div>
               <div class="col col-2 fs-5">
-                <i id="closeRight" class="bi bi-x"></i>
+                <span class="close-btn" onclick="nascondiColonna()">x</span>
               </div>
             </div>
             <div
@@ -533,14 +540,14 @@
       <!-- ACTIONS BAR  -->
       <div
         id="mainActions"
-        class="container-fluid bg-dark p-3 position-fixed bottom-0 justify-content-center align-items-center"
+        class="container-fluid bg-dark py-2 px-3 position-fixed bottom-0 justify-content-center align-items-center"
       >
         <div class="row justify-content-center">
           <div class="col-md-3 align-items-center justify-content-start">
             <div class="row align-items-center">
               <div
-                class="col-3 px-2 overflow-hidden rounded"
-                style="max-height: 80px"
+                class="col-3 ms-2 overflow-hidden rounded p-0"
+                style="max-height: 70px; max-width: 70px"
               >
                 <img
                   class="imgsCover"

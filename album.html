@@ -17,8 +17,8 @@
   </head>
   <body class="bg-black" data-bs-theme="dark">
     <main>
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid overflow-hidden py-0">
+        <div class="row" style="min-height: calc(100vh - 88px)">
           <!-- SIDEBAR  SINISTRA -->
           <div class="col-2">
             <nav class="nav flex-column">
@@ -49,7 +49,7 @@
               <div id="navDiv1">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="index.html">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -66,8 +66,8 @@
                     </a>
                   </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
+                  <li class="nav-item p-0">
+                    <a class="nav-link" href="search.html">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -84,7 +84,7 @@
                     </a>
                   </li>
 
-                  <li class="nav-item">
+                  <li class="nav-item p-0">
                     <a class="nav-link" href="#">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +106,7 @@
 
               <div id="nav2" class="pt-3">
                 <ul class="navbar-nav">
-                  <li class="nav-item">
+                  <li class="nav-item p-0">
                     <a class="nav-link" href="#">
                       <svg
                         id="create-playlist"
@@ -124,7 +124,7 @@
                       <p class="d-inline px-1">Crea play list</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item p-0">
                     <a class="nav-link" href="#">
                       <svg
                         id="liked-songs"
@@ -143,7 +143,7 @@
                       <p class="d-inline px-1">Brani che ti piacciono</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item p-0">
                     <a class="nav-link" href="#">
                       <svg
                         id="saved-episodes"
@@ -169,7 +169,7 @@
               <div
                 id="scrollbar-right"
                 class="scrollbar overflow-y-scroll overflow-hidden"
-                style="min-height: 50vh; max-height: 50vh"
+                style="max-height: 42vh; min-height: 42vh"
               >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
@@ -200,8 +200,8 @@
 
           <!-- COLONNA CENTRALE -->
           <div
-            class="col-8 py-3 px-0 bg-secondary bg-top-album-page overflow-y-scroll scrollbar"
-            style="max-height: calc(100vh - 112px)"
+            class="col-8 pt-3 py-3 px-0 bg-linear-to-trasp bg-secondary position-relative bg-top-album-page overflow-y-scroll scrollbar overflow-x-hidden"
+            style="max-height: calc(100vh - 88px)"
           >
             <div class="row sticky-top px-4">
               <div class="col">
@@ -225,6 +225,11 @@
               </div>
               <div class="col-2 ms-auto text-end">
                 <div class="dropdown">
+                  <i
+                    class="bi bi-people"
+                    id="peopleIcon"
+                    onclick="mostraColonna()"
+                  ></i>
                   <button
                     class="fs-11px p-1 pe-2 border-0 rounded-pill bg-black btn btn-secondary dropdown-toggle"
                     type="button"
@@ -246,19 +251,29 @@
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Account</a></li>
                     <li>
-                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Impostazioni</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <hr />
+                      <a class="dropdown-item" href="#">Esci</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div class="row mt-4 p-1 px-4">
-              <div
+            <img
+              id="imgBlurred"
+              width="100%"
+              alt="cover album"
+              class="toBlur"
+            />
+            <div
+              id="containerAlbum"
+              class="row position-relative mt-4 p-1 px-4 align-items-center"
+            >
+              <!-- <div
                 class="col-2 p-0 overflow-hidden me-3"
                 style="max-height: 170px; min-width: 180px"
               >
@@ -281,7 +296,7 @@
                 <p class="mb-3 fs-11px text-white">
                   <img
                     src="
-          https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="image artista"
                     width="20px"
                     height="20px"
@@ -291,15 +306,17 @@
                   <span>Anno</span> • <span>numero brani,</span
                   ><span class="fw-light"> Durata</span>
                 </p>
-              </div>
+              </div> -->
             </div>
-
             <!--fine hero-->
 
             <!-- inizio parte centrale bassa -->
 
             <!-- colonne unite, in caso da suddividere in colonne ma senza aggiungere altri elementi le colonne sono troppo wide e i tasti troppo lontani -->
-            <div class="bg-linear-to-trasp p-3 h-100">
+            <div
+              class="bg-linear-to-trasp position-relative p-3 pb-5 mt-3"
+              style="min-height: 100%"
+            >
               <div class="row my-4">
                 <div
                   class="col d-flex justify-content-start align-items-center fs-4"
@@ -322,12 +339,11 @@
                   </div>
                 </div>
               </div>
-
               <!-- parte sotto con canzoni -->
               <!-- prima riga coi titoli -->
-              <div class="row fs-11px mt-5">
+              <div class="row fs-11px mt-5 align-items-center">
                 <div class="col-1 d-flex justify-content-end">
-                  <p class="mb-0">#</p>
+                  <p class="mb-0 fs-6">#</p>
                 </div>
                 <div class="col-5 text-uppercase">
                   <p class="mb-0">titolo</p>
@@ -343,8 +359,11 @@
               <hr class="mt-2" />
 
               <!-- riga da popolare -->
-              <div class="row fs-11px">
-                <div class="col-1 d-flex justify-content-end">
+              <div
+                id="containerAlbumSongs"
+                class="row fs-11px align-items-center"
+              >
+                <!-- <div class="col-1 d-flex justify-content-end">
                   <p>num</p>
                 </div>
                 <div class="col-5">
@@ -361,11 +380,12 @@
                 <div class="col-3 d-flex justify-content-end pe-5">
                   <p>50:00</p>
                 </div>
+              </div> -->
               </div>
+              <!-- fine parte centrale bassa -->
             </div>
-            <!-- fine parte centrale bassa -->
+            <!-- fine colonna centrale -->
           </div>
-          <!-- fine colonna centrale -->
 
           <!-- SIDEBAR  DESTRA -->
           <div id="mainRightOpened" class="col-2">
@@ -377,7 +397,7 @@
                 <i id="closeRight" class="bi-person-plus"></i>
               </div>
               <div class="col col-2 fs-5">
-                <i id="closeRight" class="bi bi-x"></i>
+                <span class="close-btn" onclick="nascondiColonna()">x</span>
               </div>
             </div>
             <div
@@ -443,26 +463,24 @@
       <!-- ACTIONS BAR  -->
       <div
         id="mainActions"
-        class="container-fluid bg-dark p-3 position-fixed bottom-0 justify-content-center align-items-center"
+        class="container-fluid bg-dark py-2 px-3 position-fixed bottom-0 justify-content-center align-items-center"
       >
         <div class="row justify-content-center">
           <div class="col-md-3 align-items-center justify-content-start">
             <div class="row align-items-center">
               <div
-                class="col-3 px-2 overflow-hidden rounded"
-                style="max-height: 80px"
+                class="col-3 ms-2 overflow-hidden rounded p-0"
+                style="max-height: 70px; max-width: 70px"
               >
-                <img
-                  src="https://images.unsplash.com/photo-1543366156-5b1f92176c31?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  width="100px"
-                  alt="album"
-                />
+                <img class="imgsCover" width="100px" alt="album" />
               </div>
               <div class="col-3 px-2">
-                <h5 class="text-white mb-0">
-                  Title
-                  <span class="text-secondary fs-6 fw-normal">Artist</span>
-                </h5>
+                <h5 id="songTitleActionBar" class="text-white mb-0">Title</h5>
+                <span
+                  id="artistTitleActionBar"
+                  class="text-secondary fs-6 fw-normal"
+                  >Artist</span
+                >
               </div>
               <div class="col">
                 <i class="bi bi-heart text-white"></i>
