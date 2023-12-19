@@ -21,13 +21,10 @@ function loadSong(query) {
 function searchSong() {
   const input = document.getElementById("inputSearch");
   query = input.value;
-  console.log(query, "input searchSong func");
-  console.log(input, "input searchSong func");
   return query;
 }
 
 function loadResults(data) {
-  console.log(data);
   const containerSearchResults = document.getElementById(
     "containerSearchResults"
   );
