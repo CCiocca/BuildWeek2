@@ -62,3 +62,13 @@
 .bg-linear-to-trasp{
   background-image: linear-gradient(to top, #191919 60%, #00000029 );
 }
+
+
+.close-btn {
+
+  cursor: pointer;
+}
+
+.bi-people {
+  cursor: pointer;
+}
