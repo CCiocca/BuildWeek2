@@ -1,38 +1,49 @@
-myUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q="
+const myUrl = "https://striveschool-api.herokuapp.com/api/deezer/search?q=";
 
-function search(){
-    const query = document.getElementById("research").value;
-    getResults(query);
-}
+// recuperare l'elemento che compie l'azione
+const searchBTN = document.getElementById("searchBtn");
 
-function getResults(query){
-    fetch(myUrl + query, {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    }
+searchBTN.onclick = () => loadSong(searchSong());
+let query = "";
+
+function loadSong(query) {
+  let url = `${myUrl}[${query}]`;
+  console.log(url, "url");
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data, "data");
+      loadResults(data.data);
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .then (data => {
-        loadResults(data)})
-    .catch(err => alert(err));
+    .catch((error) => console.error("Errore:", error));
 }
 
-function loadResults(data){
-    console.log(data);
-    const containerSearchResults = document.getElementById("containerSearchResults");
-    containerSearchResults.innerHTML="";
+function searchSong() {
+  const input = document.getElementById("inputSearch");
+  query = input.value;
+  console.log(query, "input searchSong func");
+  console.log(input, "input searchSong func");
+  return query;
+}
 
-    data.forEach(element => {
-        let newElement = `
-        <h4 class="mt-3 text-white">Risultati</h4>
+function loadResults(data) {
+  console.log(data);
+  const containerSearchResults = document.getElementById(
+    "containerSearchResults"
+  );
+  const titleResult = document.getElementById("titleResult");
+  titleResult.innerText =
+    data.length > 0 ? "Risultati" : "Ci dispiace, non ci sono risultati!";
+  containerSearchResults.innerHTML = "";
+  data.forEach((element) => {
+    console.log(element, "elemt");
+    let newElement = `
         <div class="col-4">
           <div class="card border-0 mb-3" style="max-width: 540px">
             <div class="row g-0">
               <div class="col overflow-hidden" style="max-width: 80px">
                 <img
-                  src="${element.data.album.cover}"
+                  src="${element.album.cover}"
                   alt="img-album"
                 />
               </div>
@@ -40,7 +51,7 @@ function loadResults(data){
                 <div class="card-body px-3 p-2">
                   <p class="card-text">
                     <small
-                      >${element.data.title}</small
+                      >${element.title}</small
                     >
                   </p>
                 </div>
@@ -48,9 +59,7 @@ function loadResults(data){
             </div>
           </div>
         </div>
-        `
-        containerSearchResults.innerHTML += newElement;
-})
-};
-
-
+        `;
+    containerSearchResults.innerHTML += newElement;
+  });
+}

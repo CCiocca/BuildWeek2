@@ -70,7 +70,6 @@
                     <!-- <a class="nav-link" href="#"> -->
                     <form class="d-flex align-items-center" role="search">
                       <svg
-                        id="searchBtn"
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
@@ -83,19 +82,11 @@
                         ></path>
                       </svg>
                       <input
-                        id="inputSearch"
                         class="form-control bg-black border-0 p-2 me-2"
                         type="search"
                         placeholder="Cerca"
                         aria-label="Cerca"
                       />
-                      <!-- <button
-                        id="searchBtn"
-                        class="btn btn-outline-success"
-                        type="button"
-                      >
-                        Search
-                      </button> -->
                     </form>
                     <!-- </a> -->
                   </li>
@@ -274,33 +265,45 @@
             <div class="row mt-3 bg-linear-dark p-3">
               <div
                 class="col-12 p-0"
-                style="max-height: 180px; min-width: 180px">
+                style="max-height: 180px; min-width: 180px"
+              >
                 <h1 class="text-white">Cerca</h1>
                 <form class="d-flex w-50" role="search">
-                    <input id="research" class="form-control me-2" type="search" placeholder="Cosa vuoi ascoltare?" aria-label="Search">
-                    <button class="btn btn-outline-light" type="button" onclick="search()"><i class="bi bi-search"></i></button>
-                </form>  
+                  <input
+                    id="inputSearch"
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Cosa vuoi ascoltare?"
+                    aria-label="Search"
+                  />
+                  <button
+                    id="searchBtn"
+                    class="btn btn-outline-light"
+                    type="button"
+                  >
+                    <i class="bi bi-search"></i>
+                  </button>
+                </form>
               </div>
-              
             </div>
             <!--fine hero-->
+            <h4 id="titleResult" class="mt-3 text-white">Sfoglia tutto</h4>
             <div id="containerSearchResults" class="row">
-                <h4 class="mt-3 text-white">Sfoglia tutto</h4>
-                <div class="col-3">
-                    <div class="card p-3 border-0 bg-dark-grey">
-                        <h6 class="card-title text-white">Titolo</h6>
-                        <img
-                        src="https://images.unsplash.com/photo-1679850988136-5c5d78237d03?q=80&w=2063&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        class="rounded-3"
-                        alt="cio-che-ti-piace"
-                      />
-                      <div class="card-body pt-3 p-0">
-                        <small class="card-text">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </small>
-                      </div>
-                    </div> 
+              <div class="col-3">
+                <div class="card p-3 border-0 bg-dark-grey">
+                  <h6 class="card-title text-white">Titolo</h6>
+                  <img
+                    src="https://images.unsplash.com/photo-1679850988136-5c5d78237d03?q=80&w=2063&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    class="rounded-3"
+                    alt="cio-che-ti-piace"
+                  />
+                  <div class="card-body pt-3 p-0">
+                    <small class="card-text">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </small>
                   </div>
+                </div>
+              </div>
             </div>
 
             <h5 class="text-white my-3">Altro di ciò che ti piace</h5>
