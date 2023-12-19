@@ -118,7 +118,7 @@ function populateHero(data) {
   // print actionbar side left
   const imgsCover = document.querySelectorAll(".imgsCover");
   imgsCover.forEach((el) => {
-    el.setAttribute("src", data.artist.picture);
+    el.setAttribute("src", data.tracks.data[0].album.cover);
   });
   const songTitleActionBar = document.getElementById("songTitleActionBar");
   const artistTitleActionBar = document.getElementById("artistTitleActionBar");
