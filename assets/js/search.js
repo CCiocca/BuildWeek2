@@ -62,7 +62,6 @@ function handlePrintData() {
   printSideList();
 }
 
-
 // print side list
 function printSideList() {
   const containerSideList = document.getElementById("containerSideList");
@@ -138,32 +137,3 @@ document.addEventListener("DOMContentLoaded", function () {
   // Aggiungi un gestore di eventi per il click sull'icona delle persone
   peopleIcon.addEventListener("click", mostraColonnaDestra);
 });
-
-function nascondiColonna() {
-  let mainRightOpened = document.getElementById('mainRightOpened');
-  mainRightOpened.style.display = 'none';
-  
-  let colCentral = document.querySelector('.col-8');
-  colCentral.classList.add('col-10');
-}
-document.addEventListener("DOMContentLoaded", function () {
-  let rightColumn = document.getElementById("mainRightOpened");
-  let centerColumn = document.querySelector(".col-8");
-
-  let peopleIcon = document.getElementById("peopleIcon");
-
-  function mostraColonnaDestra() {
-    // Mostra la colonna destra
-    rightColumn.style.display = "block";
-
-    // Ripristina le dimensioni della colonna centrale
-    centerColumn.classList.remove("col-10");
-    centerColumn.classList.add("col-8");
-  }
-
-  // Aggiungi un gestore di eventi per il click sull'icona delle persone
-  peopleIcon.addEventListener("click", mostraColonnaDestra);
-});
-
-
-
