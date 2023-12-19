@@ -112,7 +112,7 @@ function generateSongsList(data) {
       height="80px"
     />
   </div>
-  <p class="mb-0 me-5">${data.data[i].title}</p>
+  <p class="mb-0 me-5 col-5">${data.data[i].title}</p>
   <p class="mb-0">${data.data[i].rank}</p>
   <p class="mb-0 ms-auto">${durationFourNumbers}</p>
 </li>

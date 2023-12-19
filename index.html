@@ -17,8 +17,8 @@
   </head>
   <body class="bg-black" data-bs-theme="dark">
     <main>
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid overflow-hidden py-0">
+      <div class="row" style="min-height: calc(100vh - 88px)">
           <!-- SIDEBAR  SINISTRA -->
           <div class="col-2">
             <nav class="nav flex-column">
@@ -169,10 +169,10 @@
               <hr />
 
               <div
-                id="scrollbar-right"
-                class="scrollbar overflow-y-scroll overflow-hidden"
-                style="min-height: 50vh; max-height: 50vh; margin-bottom: 88px"
-              >
+              id="scrollbar-right"
+              class="scrollbar overflow-y-scroll overflow-hidden"
+              style="max-height: 42vh"
+            >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
                   <li class="my-2">Elemento 2</li>
@@ -202,8 +202,8 @@
 
           <!-- COLONNA CENTRALE -->
           <div
-            class="col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar"
-            style="max-height: calc(100vh - 44px)"
+            class="col-8 pt-3 bg-secondary position-relative bg-top-album-page overflow-y-scroll scrollbar overflow-x-hidden"
+            style="max-height: calc(100vh - 88px)"
           >
             <div class="row sticky-top">
               <div class="col">
