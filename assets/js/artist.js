@@ -84,8 +84,23 @@ function populateSongsList(data) {
     .then((data) => {
       console.log(data, "io sono l'array album");
       generateSongsList(data);
+      printActionBar(data.data[0]);
     })
     .catch((error) => console.error("Errore durante la fetch:", error));
+}
+
+function printActionBar(data) {
+  // print actionbar side left
+  console.log(data, "prtinactionbarrr");
+  const imgsCover = document.querySelectorAll(".imgsCover");
+  imgsCover.forEach((el) => {
+    el.setAttribute("src", data.album.cover_small);
+  });
+  const songTitleActionBar = document.getElementById("songTitleActionBar");
+  const artistTitleActionBar = document.getElementById("artistTitleActionBar");
+  songTitleActionBar.setAttribute("title", `${data.title}`);
+  songTitleActionBar.innerText = data.title;
+  artistTitleActionBar.innerText = data.artist.name;
 }
 
 function generateSongsList(data) {
