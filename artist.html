@@ -167,10 +167,10 @@
               <hr />
 
               <div
-              id="scrollbar-right"
-              class="scrollbar overflow-y-scroll overflow-hidden"
-              style="max-height: 42vh"
-            >
+                id="scrollbar-right"
+                class="scrollbar overflow-y-scroll overflow-hidden"
+                style="max-height: 42vh"
+              >
                 <ul id="containerSideList" class="list-group">
                   <!-- <li class="my-2">Elemento 1</li>
                   <li class="my-2">Elemento 2</li>
@@ -222,7 +222,11 @@
               </div>
               <div class="col-2 ms-auto text-end">
                 <div class="dropdown">
-                  <i class="bi bi-people" id="peopleIcon" onclick="mostraColonna()"></i>
+                  <i
+                    class="bi bi-people"
+                    id="peopleIcon"
+                    onclick="mostraColonna()"
+                  ></i>
                   <button
                     class="fs-11px p-1 pe-2 border-0 rounded-pill bg-black btn btn-secondary dropdown-toggle"
                     type="button"
@@ -244,7 +248,9 @@
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li><a class="dropdown-item" href="index.html">Account</a></li>
+                    <li>
+                      <a class="dropdown-item" href="index.html">Account</a>
+                    </li>
                     <li>
                       <a class="dropdown-item" href="#">Impostazioni</a>
                     </li>
@@ -427,17 +433,15 @@
                 class="col-3 ms-2 overflow-hidden rounded p-0"
                 style="max-height: 70px; max-width: 70px"
               >
-                <img
-                  src="https://images.unsplash.com/photo-1543366156-5b1f92176c31?q=80&w=1885&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  width="100px"
-                  alt="album"
-                />
+                <img class="imgsCover" width="100px" alt="album" />
               </div>
               <div class="col-3 px-2">
-                <h5 class="text-white mb-0">
-                  Title
-                  <span class="text-secondary fs-6 fw-normal">Artist</span>
-                </h5>
+                <h5 id="songTitleActionBar" class="text-white mb-0">Title</h5>
+                <span
+                  id="artistTitleActionBar"
+                  class="text-secondary fs-6 fw-normal"
+                  >Artist</span
+                >
               </div>
               <div class="col">
                 <i class="bi bi-heart text-white"></i>
