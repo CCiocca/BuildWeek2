@@ -85,3 +85,5 @@ document.addEventListener("DOMContentLoaded", function () {
   // Aggiungi un gestore di eventi per il click sull'icona delle persone
   peopleIcon.addEventListener("click", mostraColonnaDestra);
 });
+
+//action bar
