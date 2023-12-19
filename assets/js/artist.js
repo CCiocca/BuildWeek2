@@ -1,4 +1,4 @@
-let pageURL  = window.location.search;
+let pageURL = window.location.search;
 const productId = new URLSearchParams(pageURL).get("id");
 myUrl = "https://striveschool-api.herokuapp.com/api/deezer/artist/" + productId;
 
@@ -6,7 +6,7 @@ let newArrayAlbums = localStorage.getItem("arrayAlbums");
 newArrayAlbums = JSON.parse(newArrayAlbums);
 
 window.onload = () => {
-  getDataAlbum()
+  getDataAlbum();
   populateSongsList();
   handleNavigation();
   printSideList(newArrayAlbums);
@@ -25,8 +25,6 @@ function getDataAlbum() {
     })
     .catch((error) => console.error("Errore durante la fetch:", error));
 }
-
-
 
 // accedo alla history di navigazione (torno indietro o vado avanti nelle pagine visitate)
 function handleNavigation() {
@@ -55,10 +53,9 @@ function printSideList(array) {
   }
 }
 
-
 function populateHero(data) {
   let containerHero = document.getElementById("hero-artist");
-  containerHero.innerHTML="";
+  containerHero.innerHTML = "";
   let newArtist = `
   <img
   src="${data.picture_big}"
@@ -73,13 +70,12 @@ function populateHero(data) {
     mensili
   </div>
 </div>`;
-containerHero.innerHTML = newArtist;
-};
-
+  containerHero.innerHTML = newArtist;
+}
 
 // va fatta un'altra chiamata per popolare le songs
 
-function populateSongsList (data){
+function populateSongsList(data) {
   let urlSongs = data.tracklist;
   fetch(urlSongs, {
     method: "GET",
@@ -90,19 +86,19 @@ function populateSongsList (data){
       generateSongsList(data);
     })
     .catch((error) => console.error("Errore durante la fetch:", error));
-  }
+}
 
-function generateSongsList(data){
-let containerArtistSongs = document.getElementById("containerArtistSongs");
-containerArtistSongs.innerHTML = "";
-for (let i = 0; i < data.data.length; i++) {
-  let durationInMinutes = data.data[i].duration / 60;
-  let durationTwoDecimals = durationInMinutes.toFixed(2)
-    let durationFourNumbers = durationTwoDecimals.toString().length < 4
-          ? durationTwoDecimals.toString().padEnd(4, "0")
-          : durationTwoDecimals;
-  let newSong = 
-  `
+function generateSongsList(data) {
+  let containerArtistSongs = document.getElementById("containerArtistSongs");
+  containerArtistSongs.innerHTML = "";
+  for (let i = 0; i < data.data.length; i++) {
+    let durationInMinutes = data.data[i].duration / 60;
+    let durationTwoDecimals = durationInMinutes.toFixed(2);
+    let durationFourNumbers =
+      durationTwoDecimals.toString().length < 4
+        ? durationTwoDecimals.toString().padEnd(4, "0")
+        : durationTwoDecimals;
+    let newSong = `
   <li class="list-group-item d-flex mb-3 align-items-center">
   <div
     class="overflow-hidden rounded ms-4 me-5"
@@ -120,11 +116,38 @@ for (let i = 0; i < data.data.length; i++) {
   <p class="mb-0">${data.data[i].rank}</p>
   <p class="mb-0 ms-auto">${durationFourNumbers}</p>
 </li>
-` 
-containerArtistSongs.innerHTML += newSong
-}}
-
-function populateArtistLikes(data){
-  let artistLikes = document.getElementById("artistLikes");
-  artistLikes.innerText = `Di ${data.name}`
+`;
+    containerArtistSongs.innerHTML += newSong;
+  }
 }
+
+function populateArtistLikes(data) {
+  let artistLikes = document.getElementById("artistLikes");
+  artistLikes.innerText = `Di ${data.name}`;
+}
+
+function nascondiColonna() {
+  const mainRightOpened = document.getElementById("mainRightOpened");
+  mainRightOpened.style.display = "none";
+
+  const colCentral = document.querySelector(".col-8");
+  colCentral.classList.add("col-10");
+}
+document.addEventListener("DOMContentLoaded", function () {
+  let rightColumn = document.getElementById("mainRightOpened");
+  let centerColumn = document.querySelector(".col-8");
+
+  let peopleIcon = document.getElementById("peopleIcon");
+
+  function mostraColonnaDestra() {
+    // Mostra la colonna destra
+    rightColumn.style.display = "block";
+
+    // Ripristina le dimensioni della colonna centrale
+    centerColumn.classList.remove("col-10");
+    centerColumn.classList.add("col-8");
+  }
+
+  // Aggiungi un gestore di eventi per il click sull'icona delle persone
+  peopleIcon.addEventListener("click", mostraColonnaDestra);
+});

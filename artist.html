@@ -49,7 +49,7 @@
               <div id="navDiv1">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="index.html">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -67,7 +67,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="search.html">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -200,7 +200,7 @@
 
           <!-- COLONNA CENTRALE -->
           <div
-            class="position-relative col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar"
+            class="position-relative col-8 py-3 px-4 bg-secondary bg-linear-dark overflow-y-scroll scrollbar "
             style="max-height: calc(100vh - 88px)"
           >
             <div class="row sticky-top">
@@ -222,6 +222,7 @@
               </div>
               <div class="col-2 ms-auto text-end">
                 <div class="dropdown">
+                  <i class="bi bi-people" id="peopleIcon" onclick="mostraColonna()"></i>
                   <button
                     class="fs-11px p-1 pe-2 border-0 rounded-pill bg-black btn btn-secondary dropdown-toggle"
                     type="button"
@@ -243,12 +244,13 @@
                     class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="index.html">Account</a></li>
                     <li>
-                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Impostazioni</a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <hr />
+                      <a class="dropdown-item" href="#">Esci</a>
                     </li>
                   </ul>
                 </div>
@@ -349,7 +351,7 @@
                 <i id="closeRight" class="bi-person-plus"></i>
               </div>
               <div class="col col-2 fs-5">
-                <i id="closeRight" class="bi bi-x"></i>
+                <span class="close-btn" onclick="nascondiColonna()">x</span>
               </div>
             </div>
             <div
