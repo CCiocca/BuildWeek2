@@ -5,7 +5,22 @@ window.onload = () => {
   getData("alt-j");
   getData("queen");
   getData("dua-lipa");
+  handleNavigation();
+
 };
+
+function handleNavigation() {
+  const goBackBTN = document.getElementById("goBack");
+  const goForwardBTN = document.getElementById("goForward");
+  goBackBTN.onclick = goBack;
+  goForwardBTN.onclick = goForward;
+}
+function goBack() {
+  window.history.back();
+}
+function goForward() {
+  window.history.forward();
+}
 
 // recuperare l'elemento che compie l'azione
 const searchBTN = document.getElementById("searchBtn");
